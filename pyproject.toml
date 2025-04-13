@@ -23,13 +23,15 @@ readme = "README.md"
 requires-python = ">= 3.8"
 
 [build-system]
- requires = ["hatchling"]
- build-backend = "hatchling.build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 # render.com uses poetry so we have to add it
 [tool.poetry]
 name = "snare"
 version = "0.1.0"
+description = "Add your description here"
+authors = ["cyreet"]
 
 [tool.rye]
 managed = true
