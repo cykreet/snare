@@ -76,4 +76,4 @@ def get_nav_items(pathname):
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(host="0.0.0.0")
