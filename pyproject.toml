@@ -1,0 +1,43 @@
+[project]
+name = "students"
+version = "0.1.0"
+description = "Add your description here"
+dependencies = [
+    "numpy>=2.2.4",
+    "pandas>=2.2.3",
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.10.1",
+    "scikit-learn>=1.6.1",
+    "pip>=25.0.1",
+    "notebook>=7.3.3",
+    "dash>=3.0.2",
+    "openpyxl>=3.1.5",
+    "statsmodels>=0.14.4",
+    "dash-bootstrap-components>=2.0.1",
+    "ruff>=0.11.5",
+]
+
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
