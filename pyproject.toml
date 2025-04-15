@@ -21,7 +21,6 @@ statsmodels = "^0.14.4"
 dash-bootstrap-components = "^2.0.1"
 ruff = "^0.11.5"
 xgboost = "^3.0.0"
-uwsgi = "^2.0.29"
 
 [build-system]
 requires = ["poetry-core"]

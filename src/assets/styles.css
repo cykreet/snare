@@ -3,6 +3,7 @@
 
 body {
 	font-family: "Libre Franklin", sans-serif;
+	margin-bottom: 8em;
 }
 
 h1,
@@ -19,4 +20,14 @@ h1 {
 .page-container {
 	max-width: 1600px;
 	margin: 0 auto;
+}
+
+form {
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: 0.5em;
+}
+
+.form-spacer > *:not(:last-child) {
+	margin-bottom: 1em;
 }

@@ -1,19 +1,13 @@
-import os
-
 import dash_bootstrap_components as dbc
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 from dash import Dash, Input, Output, dcc, html
 
+from flask import Flask
 from pages.page_404 import get_404_page
 from pages.page_analysis import get_analysis_page
 from pages.page_main import get_main_page
 
-file_dir = os.path.dirname(__file__)
-df = pd.read_csv(os.path.join(file_dir, "students.csv"))
-
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = Flask(__name__)
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP], server=server)
 
 app.title = "Student Evaluator"
 app.layout = [
@@ -21,7 +15,10 @@ app.layout = [
 	html.Link(rel="stylesheet", href="styles.css"),
 	html.Div(
 		[
-			dbc.Badge("SNARE.", color="primary", style={"fontSize": "1.4em", "userSelect": "none"}),
+			html.A(
+				children=[dbc.Badge("SNARE.", color="primary", style={"fontSize": "1.4em", "userSelect": "none"})],
+				href="/",
+			),
 			dbc.Nav(
 				id="nav-items",
 				pills=True,
@@ -76,4 +73,4 @@ def get_nav_items(pathname):
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0")
+	app.run(host="0.0.0.0", debug=False)
