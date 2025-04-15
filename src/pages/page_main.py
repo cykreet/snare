@@ -15,7 +15,7 @@ def get_main_page():
 				[
 					dbc.Col(
 						[
-							html.H1("SNARE."),
+							html.H1("Student Evaluator"),
 							html.P(
 								"Welcome to the snare student evaluator. This tool has been trained on a dataset of students which consists of their academic performance, extracirricular activities, and academic/parental support systems.",
 							),
@@ -222,20 +222,44 @@ def get_main_page():
 											),
 										]
 									),
-									html.Div(
-										[
-											dbc.Label("GPA", html_for="gpa"),
-											dbc.Input(type="number", id="gpa", placeholder="Enter GPA"),
-										]
-									),
+									# html.Div(
+									# 	[
+									# 		dbc.Label("GPA", html_for="gpa"),
+									# 		dbc.Input(type="number", id="gpa", placeholder="Enter GPA"),
+									# 	]
+									# ),
+									dbc.Button("Evaluate Student", color="primary", disabled=True),
 								],
 								className="form-spacer",
 							),
 						]
 					),
-					dbc.Col(html.P("")),
+					dbc.Col(
+						html.Div(
+							[
+								html.H1(
+									[
+										html.Span(
+											children="A",
+											id="prediction",
+											style={
+												"color": "green",
+												"fontWeight": "bold",
+												"border": "2px solid green",
+												"paddingLeft": "0.2em",
+												"paddingRight": "0.2em",
+												"borderRadius": "0.1em",
+											},
+										),
+									],
+									style={"marginBottom": "0.3em"},
+								),
+								html.Span("This student shows potential for good academic performance."),
+							]
+						)
+					),
 				],
-				style={"marginTop": "2em"},
+				style={"marginTop": "2em", "gap": "5em"},
 			),
 		]
 	)

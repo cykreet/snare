@@ -6,6 +6,10 @@ body {
 	margin-bottom: 8em;
 }
 
+p {
+	margin-top: 1em;
+}
+
 h1,
 h2,
 h3 {
@@ -15,6 +19,15 @@ h3 {
 
 h1 {
 	font-size: 3em;
+}
+
+h2 {
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+}
+
+th {
+	padding-right: 1em;	
 }
 
 .page-container {
