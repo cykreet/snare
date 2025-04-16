@@ -75,4 +75,4 @@ def get_nav_items(pathname):
 
 if __name__ == "__main__":
 	# https://render.com/docs/environment-variables#all-runtimes
-	app.run(host="0.0.0.0", debug=os.environ("RENDER") != "true")
+	app.run(host="0.0.0.0", debug=os.environ["RENDER"] != "true")
