@@ -1,11 +1,9 @@
-import os
 import dash_bootstrap_components as dbc
-import pandas as pd
 
 from dash import html
 
-file_dir = os.path.dirname(__file__)
-df = pd.read_csv(os.path.join(file_dir, "../students.csv"))
+# file_dir = os.path.dirname(__file__)
+# df = pd.read_csv(os.path.join(file_dir, "../students.csv"))
 
 
 def get_main_page():
