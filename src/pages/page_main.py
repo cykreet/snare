@@ -35,47 +35,47 @@ def get_main_page():
 											dbc.Input(type="number", id="age", placeholder="Enter age"),
 										]
 									),
-									html.Div(
-										[
-											dbc.Label("Gender", html_for="gender"),
-											dbc.Select(
-												id="gender",
-												options=[
-													{
-														"label": "Male",
-														"value": 0,
-													},
-													{"label": "Female", "value": 1},
-												],
-											),
-										]
-									),
-									html.Div(
-										[
-											dbc.Label("Etnicity", html_for="ethnicity"),
-											dbc.Select(
-												id="ethnicity",
-												options=[
-													{
-														"label": "Caucasion",
-														"value": 0,
-													},
-													{
-														"label": "African American",
-														"value": 1,
-													},
-													{
-														"label": "Asian",
-														"value": 2,
-													},
-													{
-														"label": "Other",
-														"value": 3,
-													},
-												],
-											),
-										]
-									),
+									# html.Div(
+									# 	[
+									# 		dbc.Label("Gender", html_for="gender"),
+									# 		dbc.Select(
+									# 			id="gender",
+									# 			options=[
+									# 				{
+									# 					"label": "Male",
+									# 					"value": 0,
+									# 				},
+									# 				{"label": "Female", "value": 1},
+									# 			],
+									# 		),
+									# 	]
+									# ),
+									# html.Div(
+									# 	[
+									# 		dbc.Label("Etnicity", html_for="ethnicity"),
+									# 		dbc.Select(
+									# 			id="ethnicity",
+									# 			options=[
+									# 				{
+									# 					"label": "Caucasion",
+									# 					"value": 0,
+									# 				},
+									# 				{
+									# 					"label": "African American",
+									# 					"value": 1,
+									# 				},
+									# 				{
+									# 					"label": "Asian",
+									# 					"value": 2,
+									# 				},
+									# 				{
+									# 					"label": "Other",
+									# 					"value": 3,
+									# 				},
+									# 			],
+									# 		),
+									# 	]
+									# ),
 									html.Div(
 										[
 											dbc.Label("Study Time (Weekly)", html_for="study-time"),
