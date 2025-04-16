@@ -21,6 +21,8 @@ statsmodels = "^0.14.4"
 dash-bootstrap-components = "^2.0.1"
 ruff = "^0.11.5"
 xgboost = "^3.0.0"
+nbformat = "^5.10.4"
+seaborn = "^0.13.2"
 
 [build-system]
 requires = ["poetry-core"]

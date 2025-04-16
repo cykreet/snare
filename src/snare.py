@@ -1,3 +1,4 @@
+import os
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, dcc, html
 
@@ -73,4 +74,5 @@ def get_nav_items(pathname):
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", debug=True)
+	# https://render.com/docs/environment-variables#all-runtimes
+	app.run(host="0.0.0.0", debug=os.environ("RENDER") != "true")
