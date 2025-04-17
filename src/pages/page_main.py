@@ -1,9 +1,5 @@
 import dash_bootstrap_components as dbc
-
 from dash import html
-
-# file_dir = os.path.dirname(__file__)
-# df = pd.read_csv(os.path.join(file_dir, "../students.csv"))
 
 
 def get_main_page():
@@ -26,13 +22,15 @@ def get_main_page():
 							),
 							dbc.Form(
 								[
-									html.P("Enter a student's information below to get started."),
-									html.Div(
-										[
-											dbc.Label("Age", html_for="age"),
-											dbc.Input(type="number", id="age", placeholder="Enter age"),
-										]
+									html.P(
+										"Enter a student's information below to get started.", style={"margin-top": "0"}
 									),
+									# html.Div(
+									# 	[
+									# 		dbc.Label("Age", html_for="age"),
+									# 		dbc.Input(type="number", id="age", placeholder="Enter age", required=True),
+									# 	]
+									# ),
 									# html.Div(
 									# 	[
 									# 		dbc.Label("Gender", html_for="gender"),
@@ -226,7 +224,7 @@ def get_main_page():
 									# 		dbc.Input(type="number", id="gpa", placeholder="Enter GPA"),
 									# 	]
 									# ),
-									dbc.Button("Evaluate Student", color="primary", disabled=True),
+									dbc.Button("Evaluate Student", id="evaluate_button", color="primary"),
 								],
 								className="form-spacer",
 							),
@@ -234,11 +232,12 @@ def get_main_page():
 					),
 					dbc.Col(
 						html.Div(
-							[
+							id="eval-result",
+							children=[
 								html.H1(
 									[
 										html.Span(
-											children="A",
+											children="?",
 											id="prediction",
 											style={
 												"color": "green",
@@ -252,8 +251,19 @@ def get_main_page():
 									],
 									style={"marginBottom": "0.3em"},
 								),
-								html.Span("This student shows potential for good academic performance."),
-							]
+								html.Span(id="eval-message", style={"color": "gray"}),
+								html.H2("Recommended Actions"),
+								html.Div(
+									id="actions",
+									style={
+										"display": "flex",
+										"flex-direction": "column",
+										"min-width": "100%",
+										"gap": "1em",
+									},
+								),
+							],
+							style={"display": "none"},
 						)
 					),
 				],

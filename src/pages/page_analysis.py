@@ -9,6 +9,11 @@ def get_analysis_page():
 				This page contains a detailed breakdown of the student data and how it was collected and transformed to train classification models, which were then evaluated for their performance.
 			"""),
 			html.H2("Problem Statement"),
+			dcc.Markdown("""
+				BrightPath Academy places great emphasis on both academic performance and extracurricular activities. Substantial data is collected both on curricular and extracurricular participation. Unfortunately, no standardised platform exists to integrate all this data for the purpose of producing impactful insights. This forms the greatest challenge, but it sums up other problems the institution faces. Untimely identification of at-risk students, the absence of targeted support strategies for struggling students, a vague understanding of the impact extracurricular activities have on overall performance, and an overwhelming reserve of student data with no utilisation strategy all serve as difficulties facing the team at BrightPath Academy. 
+
+				This project seeks to address all these by introducing an algorithm that makes use of machine learning techniques to put the collected data from the student performance data CSV file to use. We aim to produce an algorithm that predicts academic risk and recommends individualised support strategies by producing timely insights to educators at BrightPath Academy. Using linear regression, XG boost, and random forest, we intend to compare the outcome of all three classification algorithms to identify and implement the most efficient and insightful algorithm. That model will then undergo deep learning to finally be deployed on Dash. 
+			"""),
 			html.H2("Hypthesis Generation"),
 			html.P("Initially we had formulated the following hypothesis:"),
 			dcc.Markdown("""
