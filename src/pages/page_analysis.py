@@ -8,48 +8,32 @@ def get_analysis_page():
 			dcc.Markdown("""
 				This page contains a detailed breakdown of the student data and how it was collected and transformed to train classification models, which were then evaluated for their performance.
 			"""),
-			html.H2("Problem Statement"),
-			dcc.Markdown("""
-				BrightPath Academy places great emphasis on both academic performance and extracurricular activities. Substantial data is collected both on curricular and extracurricular participation. Unfortunately, no standardised platform exists to integrate all this data for the purpose of producing impactful insights. This forms the greatest challenge, but it sums up other problems the institution faces. Untimely identification of at-risk students, the absence of targeted support strategies for struggling students, a vague understanding of the impact extracurricular activities have on overall performance, and an overwhelming reserve of student data with no utilisation strategy all serve as difficulties facing the team at BrightPath Academy. 
-
-				This project seeks to address all these by introducing an algorithm that makes use of machine learning techniques to put the collected data from the student performance data CSV file to use. We aim to produce an algorithm that predicts academic risk and recommends individualised support strategies by producing timely insights to educators at BrightPath Academy. Using linear regression, XG boost, and random forest, we intend to compare the outcome of all three classification algorithms to identify and implement the most efficient and insightful algorithm. That model will then undergo deep learning to finally be deployed on Dash. 
-			"""),
-			html.H2("Hypthesis Generation"),
-			html.P("Initially we had formulated the following hypothesis:"),
-			dcc.Markdown("""
-				- **Study Time and Academic Performance**: Students who spend more hours studying every week are more likely to achieve higher Grade Class categories compared to those with lower study time.
-				- **The impact of Absence when it comes to grades**: The higher number of absences are associated with lower GradeClass categories, this indicates a negative impact on academic performance.
-				- **Extracurricular activities and academic success**: Participation in extracurricular activities positively correlates with higher GradeClass categories, this suggests that engagement in these activities supports academic performance.
-				- **Parental support and student outcomes**: Higher levels of parental support are associated with better GradeClass categories, indicating that parental involvement is a significant factor in academic success.
-				- **Tutoring effectiveness**: Students who receive tutoring are more likely to achieve higher GradeClass categories compared to those who do not, suggesting that tutoring is an effective for improving grades.
-			"""),
 			html.H2("Understanding The Data"),
 			dcc.Markdown("""
 				In the initially provided student dataset we have 15 total columns.
 								
-				| Column | Description |
-				| --- | --- |
-				| `StudentID` | Unique identifier for each student |
-				| `Age` | Age of students from 15 to 18 |
-				| `Gender` | Gender of students, `0` represents Male and `1` represents Female |
-				| `Ethnicity` | Ethnicity of students from `0` to `3` |
-				| `ParentalEducation` | Parental education level from `0` to `4` |
-				| `StudyTimeWeekly` | Hours of study per week |
-				| `Absences` | Number of absences during the school year from `0` to `30` |
-				| `Tutoring` | Binary variable indicating whether the student is being tutored |
-				| `ParentalSupport` | Parental support level from `0` to `4` |
-				| `Extracurricular` | Binary variable indicating whether the student is involved in extracurricular activities |
-				| `Sports` | Binary variable indicating whether the student is involved in sports |
-				| `Music` | Binary variable indicating whether the student is involved in music |
-				| `Volunteering` | Binary variable indicating whether the student is involved in volunteering |
-				| `GPA` | GPA of the student |
-				| `GradeClass` | Grade class of the student based on the GPA, from `0` to `4` |
+				| Column | Data Type | Statistical Type | Description | Values | Analysis |
+				| --- | --- | --- | --- | --- | --- |
+				| `StudentID` | `int64` | Nominal (Categorical) | Unique identifier for each student | Unique integers | Unique identifier, insignificant for analysis |
+				| `Age` | `int64` | Discrete Ordinal | Age of students | 15, 16, 17, 18 | Age distribution, correlation with performance metrics |
+				| `Gender` | `int64` | Binary Categorical | Gender of students | `0` (Male), `1` (Female) | Gender distribution, performance differences by gender |
+				| `Ethnicity` | `int64` | Nominal (Categorical) | Ethnicity of students | `0` to `3` | Demographic analysis, check for performance gaps |
+				| `ParentalEducation` | `int64` | Ordinal | Parental education level | `0` to `4` | Impact on student performance, socioeconomic indicator |
+				| `StudyTimeWeekly` | `float64` | Continuous | Hours of study per week | Positive real numbers | Distribution, correlation with GPA, optimal study time |
+				| `Absences` | `int64` | Discrete Count | Number of absences during the school year | `0` to `30` | Impact on performance, identify at-risk students |
+				| `Tutoring` | `int64` | Binary Categorical | Whether student receives tutoring | `0` (No), `1` (Yes) | Effectiveness of tutoring on performance |
+				| `ParentalSupport` | `int64` | Ordinal | Parental support level | `0` to `4` | Impact on student outcomes, interaction with other factors |
+				| `Extracurricular` | `int64` | Binary Categorical | Student involvement in extracurricular activities | `0` (No), `1` (Yes) | Impact on academic performance |
+				| `Sports` | `int64` | Binary Categorical | Student involvement in sports | `0` (No), `1` (Yes) | Relationship with GPA, time management |
+				| `Music` | `int64` | Binary Categorical | Student involvement in music | `0` (No), `1` (Yes) | Relationship with GPA, cognitive benefits |
+				| `Volunteering` | `int64` | Binary Categorical | Student involvement in volunteering | `0` (No), `1` (Yes) | Impact on personal development and academics |
+				| `GPA` | `float64` | Continuous | GPA of the student | Typically 0.0-4.0 | Key outcome variable, distribution analysis |
+				| `GradeClass` | `float64` | Ordinal | Grade class based on GPA | `0` to `4` | Alternative categorical outcome variable |
 
 				---
 	
-				`GradeClass` is determined to be the target variable for the classification models.
+				The dataset contains `2392` rows, while `GradeClass` is determined to be the target variable for the classification models.
 			"""),
-			html.H2("Preparing and Loading Data"),
 			html.H2("Exploratory Data Analysis"),
 			html.H2("Data Cleaning"),
 			html.H2("Evaluation Metrics"),
