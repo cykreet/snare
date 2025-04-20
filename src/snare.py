@@ -1,9 +1,9 @@
 import os
 import numpy as np
-import xgboost as xgb
 import dash_bootstrap_components as dbc
-from dash import Dash, Input, Output, State, dcc, html
 
+from dash import Dash, Input, Output, State, dcc, html
+from keras import models
 from flask import Flask
 from helpers.evaluate_grade import evaluate_grade
 from pages.page_404 import get_404_page
@@ -15,9 +15,7 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP], server=server)
 
 file_dir = os.path.dirname(__file__)
 
-# todo: replace with "best" performing model
-model = xgb.XGBClassifier()
-model.load_model(os.path.join(file_dir, "xgboost_model.json"))
+model = models.load_model(os.path.join(file_dir, "coral.h5"))
 
 app.title = "Student Evaluator"
 app.layout = [
@@ -147,12 +145,16 @@ def on_evaluate_click(n, study_time, absences, tutoring, parent_support, extra, 
 		]
 	)
 
+	# todo: outputs not higher than C
 	prediction = model.predict(input_features)
+	predClass = np.sum(prediction > 0.5, axis=1)
+	print(prediction)
+	print(predClass)
 	evaluation = evaluate_grade(
-		prediction[0], study_time, absences, tutoring, parent_support, extra, sports, music, volunteer
+		predClass[0], study_time, absences, tutoring, parent_support, extra, sports, music, volunteer
 	)
 
-	if evaluation["grade"] not in ["A", "B"]:
+	if evaluation["actions"]:
 		action_children = [
 			html.Div(
 				[html.Span(action["title"], style={"font-weight": "bold"}), html.Span(action["message"])],

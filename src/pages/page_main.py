@@ -194,7 +194,7 @@ def get_main_page():
 												],
 											),
 											dbc.FormText(
-												"Does the stdent participate in any musical activities?",
+												"Does the student participate in any musical activities?",
 												color="secondary",
 											),
 										]
