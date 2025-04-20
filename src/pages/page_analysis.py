@@ -35,12 +35,30 @@ def get_analysis_page():
 				The dataset contains `2392` rows, while `GradeClass` is determined to be the target variable for the classification models.
 			"""),
 			html.H2("Exploratory Data Analysis"),
+			html.H3("Univariate Analysis"),
+			html.H3("Bivariate Analysis"),
+			html.P(
+				"The relationship between continuous columns (StudyTimeWeekly and Absences) and the target variable “GradeClass”. These plots visualized that the distribution of study time and absences varied across the different grade categories. For example, students with higher grades (like A or B) tend to study more or have fewer absences."
+			),
+			html.Img(src="/assets/graphs/bivariate/predictors.png"),
+			html.Img(src="/assets/graphs/bivariate/predictors2.png"),
+			html.P(
+				"Heatmap for cross-tabulation visualises how grade categories are distributed across different levels of parental support. It visually highlighted any trends, such as whether higher parental support corresponded to better grades."
+			),
+			html.Img(src="/assets/graphs/bivariate/heatmap.png"),
 			html.H2("Data Cleaning"),
-			html.H2("Evaluation Metrics"),
 			html.H2("Feature Engineering"),
 			html.H2("Model Building"),
 			dcc.Markdown(
 				"For this solution, we employed the use of 3 different classification models: **Logistic Regression**, **Random Forest**, and **XGBoost**. The models were trained on the training dataset and evaluated on the validation dataset, and the best model was selected based on the evaluation metrics."
+			),
+			html.H3("Logistic Regression"),
+			html.H3("Random Forest"),
+			html.H3("XGBoost"),
+			html.Img(src="/assets/graphs/xgboost-confusion.png", width=500),
+			html.H3("Deep Learning (Coral)"),
+			html.P(
+				"The ANN model allows us to take multiple inputs and predict how well they’re likely to perform in terms of the ‘GradeClass” or ordinal values. This model focuses on the natural ranking between the “GradeClass” values because it can capture non-linear patterns and interactions between variables more effectively than simpler models. With the help of the CORAL technique the ANN model can be guided to treat predictions as ordered rather than flat categories by transforming the ordinal target variable values into a series of binary threshold values. This leads to more realistic and informed predictions."
 			),
 			html.H2("Model Evaluation"),
 		],
