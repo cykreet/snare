@@ -80,13 +80,19 @@ def get_analysis_page():
 								
 				**Removing Irrelevant or Redundant Features:**
 
-				We removed all the columns that did not influence the target variable “GradeClass” such as identifiers (like Student ID), demographic data (like age, gender, and ethnicity). We also removed the “GPA” columns because it can also be perceived as output data which can’t be used for training our ML models. These changes simplify our dataset and focuses on the important features. 
+				We removed all the columns that did not influence the target variable “GradeClass” such as identifiers (like Student ID), demographic data (like age, gender, and ethnicity). We also removed the “GPA” columns because it can also be perceived as output data which can't be used for training our ML models. These changes simplify our dataset and focuses on the important features. 
 			"""),
 			html.H2("Model Building"),
 			dcc.Markdown(
 				"For this solution, we employed the use of 3 different classification models: **Logistic Regression**, **Random Forest**, and **XGBoost**. The models were trained on the training dataset and evaluated on the validation dataset, and the best model was selected based on the evaluation metrics."
 			),
 			html.H3("Logistic Regression"),
+			dcc.Markdown("""
+				Logistic regression is a statistical method used for binary classification. It predicts the probability that a given inputs belongs  to a particular class this can 0 or 1. Unlike linearreg regression, which predicts continuous values, logistic regression uses the logistic(sigmoid) function to map predictions to probabilities between 1 and 0.
+								
+				The confusion matrix shows the number of predictions for each actual vs. predicted class pair. Normalizing by row (cm.sum(axis=1)) converts counts to proportions, making it easier to see the model's performance for each class. The plot visualizes where the model is making errors (e.g., if it often predicts GradeClass 3 instead of 2). 
+			"""),
+			html.Img(src="/assets/graphs/log-confusion.png", width=500),
 			html.H3("Random Forest"),
 			html.Img(src="/assets/graphs/forest-confusion.png", width=500),
 			html.H3("XGBoost"),
