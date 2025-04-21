@@ -36,6 +36,16 @@ def get_analysis_page():
 			"""),
 			html.H2("Exploratory Data Analysis"),
 			html.H3("Univariate Analysis"),
+			dcc.Markdown("""
+				We have performed a univariate analysis to better understand the distribution and characteristics of our target variable. Focusing primarily on the grade class attribute, this process involves both descriptive statistics and visualization techniques. Below are the steps we took: 
+
+				- **Overview:** we made use of the info() function to inspect the dataset's internal structure. This involved checking for null values and data types. 
+				- **Descriptions:** the describe() function was used to provide statistical values including count, mean, and quartiles. This allowed for a quick overview of central tendency and potential outliers. 
+				- **Outlier detection:** we made use of boxplots to visually identify potential outliers and values that were not within the interquartile range. We supplemented this visualisation with programmed calculations to explicitly find and label outliers. 
+				- **Distribution:** our second visualisation was a histogram to illustrate the distribution within the grade class attribute. This helped identify the frequency of grade class ranges. 
+
+				This analysis provided a comprehensive overview of students' performance. It helped identify skewness in our data and highlighted the most populous grade class. 
+			"""),
 			html.H3("Bivariate Analysis"),
 			html.P(
 				"The relationship between continuous columns (StudyTimeWeekly and Absences) and the target variable “GradeClass”. These plots visualized that the distribution of study time and absences varied across the different grade categories. For example, students with higher grades (like A or B) tend to study more or have fewer absences."
@@ -47,19 +57,55 @@ def get_analysis_page():
 			),
 			html.Img(src="/assets/graphs/bivariate/heatmap.png"),
 			html.H2("Data Cleaning"),
+			dcc.Markdown("""
+				**Checking for Data Quality Issues:**
+
+				We have also checked if our dataset contains any missing values or duplicate entries using the duplicate () and isnull() functions. This cleans our data and ensures it remains consistent bu avoiding error or bias in our ML models. 
+
+				**Outlier Detection and Removal:**
+
+				We used the Interquartile Range (IQR) method to detect and remove any outliers that are higher or lower than most data points in our dataset. 
+			"""),
 			html.H2("Feature Engineering"),
+			dcc.Markdown("""
+				**Target Variable Transformation (Creating Grade Categories):**
+
+				For the target column “GradeClass” to have more accurate records we mapped the values in the “GPA” column to the target column where we converted the mapped data into ordinal data. We used a function which transformed the data into a new categorical variable called “GradeClass”. This function grouped students into five categories based on their GPA: 
+				
+				- **A (Excellent)**: GPA of 3.5 and above.
+				- **B (Good)**: GPA between 2.5 and 3.5.
+				- **C (Average)**: GPA between 2.0 and 2.5.
+				- **D (Below Average)**: GPA between 0.5 and 2.0.
+				- **F (Fail)**: GPA below 0.5.
+								
+				**Removing Irrelevant or Redundant Features:**
+
+				We removed all the columns that did not influence the target variable “GradeClass” such as identifiers (like Student ID), demographic data (like age, gender, and ethnicity). We also removed the “GPA” columns because it can also be perceived as output data which can’t be used for training our ML models. These changes simplify our dataset and focuses on the important features. 
+			"""),
 			html.H2("Model Building"),
 			dcc.Markdown(
 				"For this solution, we employed the use of 3 different classification models: **Logistic Regression**, **Random Forest**, and **XGBoost**. The models were trained on the training dataset and evaluated on the validation dataset, and the best model was selected based on the evaluation metrics."
 			),
 			html.H3("Logistic Regression"),
 			html.H3("Random Forest"),
+			html.Img(src="/assets/graphs/forest-confusion.png", width=500),
 			html.H3("XGBoost"),
+			dcc.Markdown("""
+				XGBoost is a performant and flexible gradient boosting implementation, which can be utilised for various tasks ranging from tabular data to large-scale datasets. It allows for faster iteration and experimentation with more features and hyperparameters.
+
+				In order to utilise XGBoost for multi-class classifications problems, such as the one expressed in this project, we use the `multi:softprob` objective, which outputs a vector of class probabilities. Additionally, we configure our `num_class` parameter to specify the number of classes in our target variable (which is `5`). This dataset also required assigning sample weights to adjust for the imbalanced data, by setting the `sample_weight` parameter when training in order to balance the importance of underrepresented classes.
+
+				Model parameters are then further tuned with Bayesian optimisation within the defined search space to determine the optimal parameters, which ultimately yields an accuracy of 77%. This normalised confusion matrix provides a visual overview of the model's performance in predicting different classes.
+			"""),
 			html.Img(src="/assets/graphs/xgboost-confusion.png", width=500),
 			html.H3("Deep Learning (Coral)"),
 			html.P(
-				"The ANN model allows us to take multiple inputs and predict how well they’re likely to perform in terms of the ‘GradeClass” or ordinal values. This model focuses on the natural ranking between the “GradeClass” values because it can capture non-linear patterns and interactions between variables more effectively than simpler models. With the help of the CORAL technique the ANN model can be guided to treat predictions as ordered rather than flat categories by transforming the ordinal target variable values into a series of binary threshold values. This leads to more realistic and informed predictions."
+				'The ANN model allows us to take multiple inputs and predict how well they \'re likely to perform in terms of the "GradeClass" or ordinal values. This model focuses on the natural ranking between the “GradeClass” values because it can capture non-linear patterns and interactions between variables more effectively than simpler models. With the help of the CORAL technique the ANN model can be guided to treat predictions as ordered rather than flat categories by transforming the ordinal target variable values into a series of binary threshold values. This leads to more realistic and informed predictions.'
 			),
+			html.Img(src="/assets/graphs/deep-confusion.png", width=500),
 			html.H2("Model Evaluation"),
+			dcc.Markdown("""
+				Comparing the accuracies of the different models, the deep learning model with CORAL provided the highest accuracy at `82%`.
+			"""),
 		],
 	)

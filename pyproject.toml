@@ -24,6 +24,7 @@ xgboost = "^3.0.0"
 nbformat = "^5.10.4"
 seaborn = "^0.13.2"
 tensorflow = "^2.19.0"
+scikit-optimize = "^0.10.2"
 
 [build-system]
 requires = ["poetry-core"]
