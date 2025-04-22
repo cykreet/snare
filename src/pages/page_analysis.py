@@ -106,6 +106,17 @@ def get_analysis_page():
 			"""),
 			html.Img(src="/assets/graphs/log-confusion.png", width=500),
 			html.H3("Random Forest"),
+			dcc.Markdown("""
+				This is a supervised machine learning algorithm which we will use for the classification of students regarding our target attribute, grade class. We tested for accuracy and applied measures to test the effect on accuracy of both changing the number of trees and the number of attributes. We train, test, and rebuild the model to find the highest achievable accuracy using the steps below.  
+
+				- **Preparation**: this is where we import our dataset and get a quick glance over it. We also pick out our target attribute as it will be isolated from the other attributes as seen in the steps to follow 
+
+				- **Training**, testing, and fitting: this is where we introduced the random forest classifier function. We split the data into thirds with the training set taking up two thirds and the test set only taking a third of our data. We have also made use of a 42 random state to randomise the executions of the model in each iteration of the algorithm. This allows for maximum achievable accuracy with lowered chance of the model underperforming. Finally, we fit the model to the training set to start the categorisation. 
+
+				- **Evaluation**: we have made use of confusion matrix and classification report to assess the model’s accuracy and performance, all with precision, recall f-1 score and others all bundled in. 
+
+				This is all because the model handles categorical targets well. It excels at identifying the most influential attribute all while greatly reducing overfitting due to its ensemble and averaging nature. All while handling various data types well. 
+			"""),
 			html.Img(src="/assets/graphs/forest-confusion.png", width=500),
 			html.H3("XGBoost"),
 			dcc.Markdown("""
