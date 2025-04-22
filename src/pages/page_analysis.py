@@ -1,7 +1,18 @@
-from dash import html, dcc
+import pandas as pd
+
+from dash import html, dcc, dash_table
 
 
 def get_analysis_page():
+	metric_data = [
+		{"Model": "Logistic Regression", "Accuracy": 0.81, "RMSE": 0.44},
+		{"Model": "Random Forest", "Accuracy": 0.79, "RMSE": 0.48},
+		{"Model": "XGBoost", "Accuracy": 0.77, "RMSE": 0.48},
+		{"Model": "Deep Learning (Coral)", "Accuracy": 0.82, "RMSE": 0.42},
+	]
+
+	df = pd.DataFrame(metric_data)
+
 	return html.Div(
 		[
 			html.H1("Analysis"),
@@ -46,6 +57,7 @@ def get_analysis_page():
 
 				This analysis provided a comprehensive overview of students' performance. It helped identify skewness in our data and highlighted the most populous grade class. 
 			"""),
+			html.Img(src="/assets/graphs/univariate/analysis.png"),
 			html.H3("Bivariate Analysis"),
 			html.P(
 				"The relationship between continuous columns (StudyTimeWeekly and Absences) and the target variable “GradeClass”. These plots visualized that the distribution of study time and absences varied across the different grade categories. For example, students with higher grades (like A or B) tend to study more or have fewer absences."
@@ -104,14 +116,32 @@ def get_analysis_page():
 				Model parameters are then further tuned with Bayesian optimisation within the defined search space to determine the optimal parameters, which ultimately yields an accuracy of 77%. This normalised confusion matrix provides a visual overview of the model's performance in predicting different classes.
 			"""),
 			html.Img(src="/assets/graphs/xgboost-confusion.png", width=500),
-			html.H3("Deep Learning (Coral)"),
+			html.H3("Deep Learning (CORAL)"),
 			html.P(
 				'The ANN model allows us to take multiple inputs and predict how well they \'re likely to perform in terms of the "GradeClass" or ordinal values. This model focuses on the natural ranking between the “GradeClass” values because it can capture non-linear patterns and interactions between variables more effectively than simpler models. With the help of the CORAL technique the ANN model can be guided to treat predictions as ordered rather than flat categories by transforming the ordinal target variable values into a series of binary threshold values. This leads to more realistic and informed predictions.'
 			),
 			html.Img(src="/assets/graphs/deep-confusion.png", width=500),
 			html.H2("Model Evaluation"),
 			dcc.Markdown("""
-				Comparing the accuracies of the different models, the deep learning model with CORAL provided the highest accuracy at `82%`.
+				Directly comparing the accuracy and root mean squared error (RMSE), we can evaluate the performance of the models.
 			"""),
+			dash_table.DataTable(
+				columns=[{"name": col, "id": col} for col in df.columns],
+				data=df.to_dict("records"),
+				style_header={
+					"backgroundColor": "#2a3f5f",
+					"color": "white",
+					"fontWeight": "bold",
+					"textAlign": "center",
+				},
+				style_table={
+					"maxWidth": "700px",
+					"margin": "0 auto",
+					"overflow": "hidden",
+				},
+			),
+			dcc.Markdown(
+				"From the metrics listed above, model performance is marginally similar. The deep learning model following the CORAL method, shows the highest accuracy, with the lowest RMSE. This model is what we've decided to utilise in our student evaluator tool."
+			),
 		],
 	)
