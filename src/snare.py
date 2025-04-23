@@ -12,6 +12,7 @@ from pages.page_main import get_main_page
 
 server = Flask(__name__)
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP], server=server)
+server = app.server
 
 file_dir = os.path.dirname(__file__)
 
